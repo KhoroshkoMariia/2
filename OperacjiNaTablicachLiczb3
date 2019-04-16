@@ -1,0 +1,48 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+public class OperacjiNaTablicachLiczb3 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj rozmiar tablicy1 ");
+		int rozmiar = sc.nextInt();
+		System.out.println("Podaj rozmiar tablicy2 ");
+		int rozmiar2 = sc.nextInt();
+		int[] tablica = new int[rozmiar];
+		int[] tablica2 = new int[rozmiar2];
+		System.out.println("Podaj liczby dla pierwszej tablicy");
+		for (int i = 0; i < rozmiar; i++) {
+			tablica[i] = sc.nextInt();
+		}
+		System.out.println("Podaj liczby dla drugiej tablicy");
+		for (int j = 0; j < rozmiar2; j++) {
+			tablica2[j] = sc.nextInt();
+		}
+
+		sc.close();
+		System.out.println("Tablica1:  " +  Arrays.toString(tablica));
+		System.out.println("Tablica2:  " + Arrays.toString(tablica2));
+		
+		List<Integer> wynik = wszystkieWspolne(tablica, tablica2);
+		for (int i = 0; i < wynik.size(); i++) {
+			System.out.print("Wszystkie wspolne: " + wynik.get(i));
+		}
+	}
+
+	static List<Integer> wszystkieWspolne(int[] t1, int[] t2) {
+			ArrayList<Integer> wynik = new ArrayList<Integer>();
+
+		for (int i = 0; i < t1.length; i++) {
+			for (int j = 0; j < t2.length; j++) {
+				if (t1[i] == t2[j]) {
+					wynik.add(t1[i]);
+					break;
+				}
+			}
+		}
+		return wynik;
+	}
+}
