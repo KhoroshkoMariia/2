@@ -1,0 +1,211 @@
+/*
+ * Zadanie 6.1 Operacje na tablicach liczb
+ (pomijając te, które zrobiliśmy na zajęciach, ewentualnie jeszcze raz jako powtórzenie)
+• int suma(int[] tab)
+• double srednia(int[] tab) lub double srednia(double[] tab)
+• int max(int[] tab) – zwraca największą wartość z tablicy
+◦ Wynikiem może być Integer i wtedy w przypadku pustej tablicy można zwrócić null
+• int roznicaMinMax(int[] tab) – różnica pomiędzy największą a najmniejszą liczbą w
+tablicy; 0 jeśli tablica jest pusta.
+• void wypiszWieksze(int[] tab, int x) – wypisuje na System.out wszystkie te liczby z
+tablicy tab, które są większe od x
+• Integer pierwszaWieksza(int[] tab, int x) – zwraca (return) pierwszą znalezioną w tab
+liczbę większą od x; zwraca null, jeśli takiej liczby tam nie ma.
+• int sumaWiekszych(int[] tab, int x) – zwraca (return) sumę liczb z tablicy tab, które są
+większe niż x.
+• int ileWiekszych(int[] tab, int x) – liczy ile elementów tablicy tab jest większych od
+liczby x.
+• void wypiszPodzielne(int[] tab, int x) – wypisuje na System.out wszystkie te liczby z
+tablicy tab, które są podzielne przez x (warunek do sprawdzenia: element % x == 0 )
+• Integer pierwszaPodzielna(int[] tab, int x) – zwraca (return) pierwszą znalezioną w tab
+liczbę podzielną przez x; zwraca null, jeśli takiej liczby tam nie ma.
+• int ileWiekszych(int[] tab, int x) – liczy ile elementów tablicy tab jest większych od
+liczby x.
+• Integer znajdzWspolny(int[] t1, int[] t2) – zwraca element (liczbę), który występuje
+zarówno w tablicy t1, jak i t2; zwraca null, jeśli takiego elementu nie ma.
+• List<Integer> wszystkieWspolne(int[] t1, int[] t2) – zwraca listę wszystkich wspólnych
+elementów z tablic t1 i t2. Jeśli takiego elementu nie ma, należy zwrócić pustą listę. (dla
+tych, którzy znają listy lub chcą poszukać jak się ich używa).
+ */
+
+
+import java.util.Arrays;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+public class OperacjiNaTablicachLiczb {
+
+	// --------Suma----------
+
+	static int suma(int[] t) {
+		int suma = 0;
+		for (int i = 0; i < t.length; i++) {
+			suma = suma + t[i];
+		}
+
+		return suma;
+	}
+
+	// ---------Srednia---------
+
+	static int srednia(int[] t) {
+		int suma = 0;
+		if (t.length == 0) {
+			System.out.println("Blad przy obliczaniu sredniej.Tablica jest pusta");
+			return 0;
+		} else {
+			for (int i = 0; i < t.length; i++) {
+				suma = suma + t[i];
+			}
+		}
+
+		return suma / t.length;
+
+	}
+
+	// ---------Max---------
+
+	static int max(int[] t) {
+		int max = 0;
+		int wielkoscTablicy = t.length;
+		if (wielkoscTablicy == 0) {
+System.out.println("Tablica jest pusta ");
+			return 0;
+		} else {
+			for (int i = 0; i < t.length; i++) {
+				if (max < t[i]) {
+					max = t[i];
+				}
+			}
+
+			return max;
+		}
+	}
+
+	// ---------Max - Min---------
+
+	static int maxMin(int[] t) {
+
+		int wielkoscTablicy = t.length;
+		if (wielkoscTablicy == 0) {
+			System.out.println("Tablica jest pusta. Nie ma możliwości obliczenia roznicy max-min ");
+			return 0;
+		} else {
+			int max = t[0];
+			int min = t[0];
+			for (int i = 0; i < t.length; i++) {
+				if (min > t[i]) {
+					min = t[i];
+				}
+				if (max < t[i]) {
+					max = t[i];
+				}
+			}
+			return max - min;
+		}
+	}
+
+	// ---------WypiszWieksze---------
+
+	static void wypiszWieksze(int[] t, int x) {
+		int wieksze = 0;
+		System.out.println("liczby wieksze od x: ");
+		for (int i = 0; i < t.length; i++) {
+
+			if (x < t[i]) {
+				wieksze = t[i];
+				System.out.print(wieksze + " , ");
+			}
+		}
+		System.out.println();
+	}
+
+	// ---------Pierwsza Wieksza---------
+	static Integer pierwszaWielsza(int[] t, int x) {
+
+		Integer wieksze = null;
+
+		for (int i = 0; i < t.length; i++) {
+
+			if (x < t[i]) {
+				wieksze = t[i];
+				break;
+			}
+		}
+		return wieksze;
+	}
+
+	// ---------sumaWiekszych---------
+
+	static int sumaWiekszych(int[] t, int x) {
+		int wieksze = 0;
+		int suma = 0;
+		for (int i = 0; i < t.length; i++) {
+
+			if (x < t[i]) {
+				wieksze = t[i];
+				suma += wieksze;
+			}
+		}
+		return suma;
+	}
+
+	// ---------ileWiekszych---------
+
+	static int ileWiekszych(int[] t, int x) {
+		int j = 0;
+		for (int i = 0; i < t.length; i++) {
+
+			if (x < t[i]) {
+				j++;
+			}
+		}
+		return j;
+	}
+
+	// ------wypiszPodzielne-----
+	static void wypiszPodzielne(int[] t, int x) {
+		System.out.println("liczby podzielne przez x: ");
+		for (int i = 0; i < t.length; i++) {
+
+			if (t[i] % x == 0) {
+				System.out.print(t[i] + " , ");
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj rozmiar tablicy ");
+		int[] tablica = null;
+
+		try {
+			int rozmiar;
+			int x;
+			rozmiar = sc.nextInt();
+			tablica = new int[rozmiar];
+			System.out.println("Podaj liczby dla tablicy");
+			for (int i = 0; i < rozmiar; i++) {
+				tablica[i] = sc.nextInt();
+			}
+
+			System.out.println("Podaj x");
+			x = sc.nextInt();
+
+			System.out.println(Arrays.toString(tablica));
+			System.out.println("suma " + suma(tablica));
+			System.out.println("srednia " + srednia(tablica));
+			System.out.println("max " + max(tablica));
+			System.out.println("roznica max-min " + maxMin(tablica));
+			wypiszWieksze(tablica, x);
+			System.out.println("pierwsza wieksza " + pierwszaWielsza(tablica, x));
+			System.out.println("suma wiekszych " + sumaWiekszych(tablica, x));
+			System.out.println("ile wiekszych " + ileWiekszych(tablica, x));
+			wypiszPodzielne(tablica, x);
+		} catch (Exception e) {
+			System.out.println("blad:" + e);
+		}
+
+	}
+
+}
