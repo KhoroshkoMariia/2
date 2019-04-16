@@ -1,0 +1,39 @@
+/ *pyta użytkownika o ilość imion
+	 tworzy tablicę takiego rozmiaru
+	 i wczytuje od użytkownika kolejne imiona - wpisuje do tablicy
+	 wypisuje wszystkie imiona
+   drugi etap:
+	 sortujemy imiona alfabetycznie i wypisujemy w kolejności posortowanej
+   sortujemy według podanego jezyka
+    
+
+
+package tablice;
+
+import java.text.Collator;
+import java.util.Arrays;
+import java.util.Locale;
+
+import javax.swing.JOptionPane;
+
+public class ZbieranieImion {
+
+	public static void main(String[] args) {
+		
+		int ile = Integer.parseInt(JOptionPane.showInputDialog("Podaj ilość imion"));
+		String[] imiona = new String[ile];
+		
+		for(int i = 0; i < ile; i++) {
+			imiona[i] = JOptionPane.showInputDialog("Podaj kolejne imię");			
+		}
+		
+		JOptionPane.showMessageDialog(null, Arrays.toString(imiona));
+		
+		JOptionPane.showMessageDialog(null, Arrays.toString(imiona));
+			
+		Arrays.sort(imiona, Collator.getInstance(new Locale("pl", "PL")));
+		JOptionPane.showMessageDialog(null, Arrays.toString(imiona));
+	
+	}
+
+}
