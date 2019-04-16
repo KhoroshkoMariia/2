@@ -1,0 +1,76 @@
+/*
+ * Zadanie 6.1 Operacje na tablicach liczb
+ (pomijając te, które zrobiliśmy na zajęciach, ewentualnie jeszcze raz jako powtórzenie)
+• int suma(int[] tab)
+• double srednia(int[] tab) lub double srednia(double[] tab)
+• int max(int[] tab) – zwraca największą wartość z tablicy
+◦ Wynikiem może być Integer i wtedy w przypadku pustej tablicy można zwrócić null
+• int roznicaMinMax(int[] tab) – różnica pomiędzy największą a najmniejszą liczbą w
+tablicy; 0 jeśli tablica jest pusta.
+• void wypiszWieksze(int[] tab, int x) – wypisuje na System.out wszystkie te liczby z
+tablicy tab, które są większe od x
+• Integer pierwszaWieksza(int[] tab, int x) – zwraca (return) pierwszą znalezioną w tab
+liczbę większą od x; zwraca null, jeśli takiej liczby tam nie ma.
+• int sumaWiekszych(int[] tab, int x) – zwraca (return) sumę liczb z tablicy tab, które są
+większe niż x.
+• int ileWiekszych(int[] tab, int x) – liczy ile elementów tablicy tab jest większych od
+liczby x.
+• void wypiszPodzielne(int[] tab, int x) – wypisuje na System.out wszystkie te liczby z
+tablicy tab, które są podzielne przez x (warunek do sprawdzenia: element % x == 0 )
+• Integer pierwszaPodzielna(int[] tab, int x) – zwraca (return) pierwszą znalezioną w tab
+liczbę podzielną przez x; zwraca null, jeśli takiej liczby tam nie ma.
+• int ileWiekszych(int[] tab, int x) – liczy ile elementów tablicy tab jest większych od
+liczby x.
+• Integer znajdzWspolny(int[] t1, int[] t2) – zwraca element (liczbę), który występuje
+zarówno w tablicy t1, jak i t2; zwraca null, jeśli takiego elementu nie ma.
+• List<Integer> wszystkieWspolne(int[] t1, int[] t2) – zwraca listę wszystkich wspólnych
+elementów z tablic t1 i t2. Jeśli takiego elementu nie ma, należy zwrócić pustą listę. (dla
+tych, którzy znają listy lub chcą poszukać jak się ich używa).
+ */
+ 
+ import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+public class OperacjiNaTablicachLiczb2 {
+
+	// ---------Znajdz Wspolny---------
+	static Integer znajdzWspolny(int[] t1, int[] t2) {
+
+		Integer liczba1 = null;
+		System.out.println("wspolne liczby: ");
+		for (int i = 0; i < t1.length; i++) {
+			liczba1 = t1[i];
+			for (int j = 0; j < t2.length; j++) {
+				if (liczba1 == t2[j]) {
+					System.out.print(liczba1 + " , ");
+				}
+			}
+		}
+		return liczba1;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj rozmiar tablicy1 ");
+		int rozmiar = sc.nextInt();
+		System.out.println("Podaj rozmiar tablicy2 ");
+		int rozmiar2 = sc.nextInt();
+		int[] tablica = new int[rozmiar];
+		int[] tablica2 = new int[rozmiar2];
+		System.out.println("Podaj liczby dla pierwszej tablicy");
+		for (int i = 0; i < rozmiar; i++) {
+			tablica[i] = sc.nextInt();
+		}
+		System.out.println("Podaj liczby dla drugiej tablicy");
+		for (int j = 0; j < rozmiar2; j++) {
+			tablica2[j] = sc.nextInt();
+		}
+
+		
+		znajdzWspolny(tablica, tablica2);
+	}
+
+}
