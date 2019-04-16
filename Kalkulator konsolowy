@@ -1,0 +1,94 @@
+
+/* Zadanie 5.1 Kalkulator konsolowy
+Napisz program działający w konsoli, który w pętli prosi o podanie kolejnego działania w formie
+jedne linii tekstu. Na podstawie dwóch podanych liczb oraz znaku operacji między nimi oblicza
+wynik działania matematycznego. W przypadku podania nieprawidłowej operacji lub złego
+formatu liczb program ma wyświetlić komunikat o błędzie. Ustalmy, że aby zakończyć
+użytkownik wpisuje słowo koniec.
+Obsłuż co najmniej cztery podstawowe działania matematyczne (+ - * /), dodatkowo możesz
+inne (sprawdź możliwości klasy Math).
+Podpowiedź: Aby Scanner wczytywał double w notacji z kropką, należy w obiekcie Scanner
+użyć amerykańskich ustawień regionalnych:
+Scanner sc = new Scanner(System.in);
+sc.useLocale(Locale.US);
+Przykładowe działanie programu (to co pogrubione wpisuje użytkownik):
+Podaj działanie: 12 * 3
+Wynik: 36.0
+Podaj działanie: 12.5 / 2
+Wynik: 6.25
+Podaj działanie: koniec
+Do widzenia.
+*/
+
+
+import java.util.Scanner;
+public class KalkulatorKonsolowy {
+	public static final String KoniecText = "koniec";
+public static void main(String[] args) {
+		double wynik = 0;
+		System.out.println("Podaj dzialanie( 2 liczby oraz znak peracji miedzy nimi)");
+		Scanner sc = new Scanner(System.in);
+
+		do {
+
+			String liczba1STR;
+			String znak;
+			String liczba2STR;
+
+			double liczba1 = 0.0;
+			double liczba2 = 0.0;
+
+			liczba1STR = sc.next();
+			if (liczba1STR.equals(KoniecText)) {
+				System.out.println("Koniec.Do widzenia");
+				break;
+			}
+
+			znak = sc.next();
+			if (znak.equals(KoniecText)) {
+				System.out.println("Koniec.Do widzenia");
+				break;
+			}
+
+			liczba2STR = sc.next();
+			if (liczba2STR.equals(KoniecText)) {
+				System.out.println("Koniec.Do widzenia");
+				break;
+			}
+
+			try {
+				liczba1 = Double.parseDouble(liczba1STR);
+				liczba2 = Double.parseDouble(liczba2STR);
+			} catch (NumberFormatException e) {
+				System.out.println("Błędne dane. Liczba1 oraz liczba2 muszą być int");
+			}
+
+			switch (znak) {
+			case "+":
+				wynik = liczba1 + liczba2;
+				break;
+			case "-":
+				wynik = liczba1 - liczba2;
+				break;
+			case "*":
+				wynik = liczba1 * liczba2;
+				break;
+			case "/":
+				if (liczba2 == 0) {
+                    System.out.println(" Nie mozna dzielic na 0! ");
+                    break;
+
+            } else {
+            wynik = liczba1 / liczba2;
+            }
+            break;
+            default:
+				wynik =0.0;
+				System.out.println("Błąd. wprowadziles bledny znak");
+			}
+			System.out.println("wynik: " + wynik);
+
+		} while (sc.hasNext());
+		sc.close();
+	}
+}
